@@ -242,7 +242,7 @@ class DeceptiveBanditEnv(gym.Env):
     r_dist : list or list or lists
         A list of either rewards (if number) or means and standard deviations (if list) of the payout that bandit has
     """
-    def __init__(self, p_dist, r_dist, steps_away=1, max_steps=30):
+    def __init__(self, p_dist, r_dist, steps_away=1, max_steps=400):
         if len(p_dist) != len(r_dist):
             raise ValueError(
                 "Probability and Reward distribution must be the same length")
@@ -260,6 +260,7 @@ class DeceptiveBanditEnv(gym.Env):
         self.p_dist = p_dist
         self.r_dist = r_dist
         self.steps = 0
+        self.reward = 0
         self.max_steps = max_steps
         self.steps_away = steps_away
         self.scale = np.concatenate(
@@ -286,25 +287,29 @@ class DeceptiveBanditEnv(gym.Env):
         assert self.action_space.contains(action)
 
         # Get the reward....
-        self.done = True
+        self.done = False
 
-        reward = 0
+        self.reward = 0
         if self.np_random.uniform() < self.p_dist[action]:
-            reward = self.r_dist[action]
+            self.reward = self.r_dist[action]
 
         # Add deceptiveness. Only the best arms are deceptive.
-        if (action in self.best) and (reward != 0):
+        if (action in self.best) and (self.reward != 0):
             try:
-                reward *= self.scale[self.steps]
+                self.reward *= self.scale[self.steps]
             except IndexError:
-                reward *= np.max(self.scale)
+                self.reward *= np.max(self.scale)
 
             self.steps += 1
 
-        return 0, float(reward), self.done, {}
+        return 0, float(self.reward), self.done, {}
+
+    def last(self):
+        return 0, float(self.reward), self.done, {}
 
     def reset(self):
         self.done = False
+        self.steps = 0
         return [0]
 
     def render(self, mode='human', close=False):
@@ -329,8 +334,8 @@ class DeceptiveBanditOneHigh10(DeceptiveBanditEnv):
                                     r_dist=r_dist,
                                     steps_away=10,
                                     max_steps=500)
-    
-    
+
+
 # -------------------------------------------------------------------------
 # Maze
 # - A modified version of MazeEnv
