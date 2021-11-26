@@ -156,8 +156,8 @@ class BanditUniform10(BanditEnv):
         return [seed]
 
 
-class BanditChange4:
-    """Change the best to the worst - BanditUniform4"""
+class BanditChange10:
+    """Change the best to the worst - BanditUniform10"""
     def __init__(self,
                  num_change=60,
                  p_min=0.1,
@@ -167,7 +167,7 @@ class BanditChange4:
         super().__init__()
 
         # Init
-        self.num_arms = 4
+        self.num_arms = 10
         self.num_change = num_change
         self.state = 0
         self.reward = 0
@@ -180,7 +180,7 @@ class BanditChange4:
 
         # Original...
         self.best = 2
-        self.orginal = BanditUniform4(p_min=self.p_min,
+        self.orginal = BanditUniform10(p_min=self.p_min,
                                       p_max=self.p_max,
                                       p_best=self.p_best,
                                       best=self.best)
