@@ -237,7 +237,8 @@ class GradualBanditChange41:
                  num_change=200,
                  p_min=0.1,
                  p_max=0.3,
-                 p_best=0.6):
+                 p_best=0.6
+                 p_change=0.6):
         super().__init__()
 
         # Init
@@ -260,7 +261,7 @@ class GradualBanditChange41:
                                       best=self.best)
         # Create change
         self.change = deepcopy(self.orginal)
-        self.change.p_dist[self.best] = self.p_best - 0.03
+        self.change.p_dist[self.best] = self.p_change - 0.03
         self.change.best = [np.argmax(self.change.p_dist)]
 
     def step(self, action):
@@ -311,7 +312,8 @@ class GradualBanditChange42:
                  num_change=200,
                  p_min=0.1,
                  p_max=0.3,
-                 p_best=0.6):
+                 p_best=0.6
+                 p_change=0.6):
         super().__init__()
 
         # Init
@@ -334,7 +336,7 @@ class GradualBanditChange42:
                                       best=self.best)
         # Create change
         self.change = deepcopy(self.orginal)
-        self.change.p_dist[self.best] = self.p_best - 0.03
+        self.change.p_dist[self.best] = self.p_change - 0.03
         self.change.best = [np.argmax(self.change.p_dist)]
 
     def step(self, action):
