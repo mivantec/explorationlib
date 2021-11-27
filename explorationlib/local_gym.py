@@ -337,7 +337,7 @@ class BanditGradualChange42:
                                       p_best=self.p_best,
                                       best=self.best)
         # Create change
-        self.change = deepcopy(self.orginal)
+        self.change = deepcopy(self.original)
         self.change.p_dist[self.best] = self.p_change
         self.change.best = [np.argmax(self.change.p_dist)]
 
