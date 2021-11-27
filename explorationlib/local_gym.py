@@ -231,7 +231,7 @@ class BanditChange4:
     def render(self, mode='human', close=False):
         pass
 
-class GradualBanditChange41:
+class GradualBanditChange4ah:
     """Gradually change BanditUniform4 from exploit to explore"""
     def __init__(self,
                  num_change=200,
@@ -306,7 +306,7 @@ class GradualBanditChange41:
     def render(self, mode='human', close=False):
         pass
 
-class GradualBanditChange42:
+class GradualBanditChange4AH:
     """Gradually change BanditUniform4 from explore to exploit"""
     def __init__(self,
                  num_change=200,
