@@ -256,12 +256,12 @@ class BanditGradualChange41:
 
         # Original...
         self.best = 2
-        self.orginal = BanditUniform4(p_min=self.p_min,
+        self.original = BanditUniform4(p_min=self.p_min,
                                       p_max=self.p_max,
                                       p_best=self.p_best,
                                       best=self.best)
         # Create change
-        self.change = deepcopy(self.orginal)
+        self.change = deepcopy(self.original)
         self.change.p_dist[self.best] = self.p_change 
         self.change.best = [np.argmax(self.change.p_dist)]
 
@@ -273,7 +273,7 @@ class BanditGradualChange41:
 
         # Step
         if self.num_steps < self.num_change:
-            self.state, self.reward, self.done, _ = self.orginal.step(action)
+            self.state, self.reward, self.done, _ = self.original.step(action)
         else:
             self.state, self.reward, self.done, _ = self.change.step(action)
             self.p_change -= 0.03
@@ -288,16 +288,16 @@ class BanditGradualChange41:
 
     def reset(self):
         self.num_steps = 0
-        self.orginal.reset()
+        self.original.reset()
         self.change.reset()
 
     def seed(self, seed=None):
         # Set
         self.np_random, seed = seeding.np_random(seed)
-        self.orginal.seed(seed)
+        self.original.seed(seed)
 
         # Copy
-        self.change = deepcopy(self.orginal)
+        self.change = deepcopy(self.original)
 
         # Update
         self.change.p_dist[self.best] = self.p_change
@@ -364,16 +364,16 @@ class BanditGradualChange42:
 
     def reset(self):
         self.num_steps = 0
-        self.orginal.reset()
+        self.original.reset()
         self.change.reset()
 
     def seed(self, seed=None):
         # Set
         self.np_random, seed = seeding.np_random(seed)
-        self.orginal.seed(seed)
+        self.original.seed(seed)
 
         # Copy
-        self.change = deepcopy(self.orginal)
+        self.change = deepcopy(self.original)
 
         # Update
         self.change.p_dist[self.best] = self.p_change
