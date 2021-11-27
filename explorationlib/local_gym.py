@@ -262,7 +262,7 @@ class BanditGradualChange41:
                                       best=self.best)
         # Create change
         self.change = deepcopy(self.orginal)
-        self.change.p_dist[self.best] = self.p_change
+        self.change.p_dist[self.best] = self.p_change 
         self.change.best = [np.argmax(self.change.p_dist)]
 
     def step(self, action):
@@ -276,7 +276,6 @@ class BanditGradualChange41:
             self.state, self.reward, self.done, _ = self.orginal.step(action)
         else:
             self.state, self.reward, self.done, _ = self.change.step(action)
-            p_change = p_change - 0.03
 
         self.num_steps += 1
 
@@ -350,7 +349,6 @@ class BanditGradualChange42:
         # Step
         if self.num_steps < self.num_change:
             self.state, self.reward, self.done, _ = self.change.step(action)
-            p_change = p_change - 0.03
         else:
             self.state, self.reward, self.done, _ = self.original.step(action)
 
