@@ -350,6 +350,7 @@ class BanditGradualChange42:
         # Step
         if self.num_steps < self.num_change:
             self.state, self.reward, self.done, _ = self.change.step(action)
+            self.p_change -= 0.03
         else:
             self.state, self.reward, self.done, _ = self.original.step(action)
 
