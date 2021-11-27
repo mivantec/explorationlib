@@ -159,7 +159,7 @@ class BanditUniform10(BanditEnv):
 class BanditChange4:
     """Change the best to the worst - BanditUniform4"""
     def __init__(self,
-                 num_change=200,
+                 num_change=100,
                  p_min=0.1,
                  p_max=0.3,
                  p_best=0.6,
@@ -235,7 +235,7 @@ class BanditChange4:
 class BanditGradualChange41:
     """Change from exploit to explore"""
     def __init__(self,
-                 num_change=200,
+                 num_change=100,
                  p_min=0.1,
                  p_max=0.3,
                  p_best=0.6,
@@ -311,7 +311,7 @@ class BanditGradualChange41:
 class BanditGradualChange42:
     """Change from explore to exploit"""
     def __init__(self,
-                 num_change=200,
+                 num_change=100,
                  p_min=0.1,
                  p_max=0.3,
                  p_best=0.6,
