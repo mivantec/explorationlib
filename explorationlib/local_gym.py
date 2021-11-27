@@ -231,13 +231,14 @@ class BanditChange4:
     def render(self, mode='human', close=False):
         pass
 
-class GradualBanditChange4ah:
-    """Gradually change BanditUniform4 from exploit to explore"""
+
+class BanditGradualChange41:
+    """Change from exploit to explore"""
     def __init__(self,
                  num_change=200,
                  p_min=0.1,
                  p_max=0.3,
-                 p_best=0.6
+                 p_best=0.6,
                  p_change=0.6):
         super().__init__()
 
@@ -305,14 +306,14 @@ class GradualBanditChange4ah:
 
     def render(self, mode='human', close=False):
         pass
-
-class GradualBanditChange4AH:
-    """Gradually change BanditUniform4 from explore to exploit"""
+    
+class BanditGradualChange42:
+    """Change from explore to exploit"""
     def __init__(self,
                  num_change=200,
                  p_min=0.1,
                  p_max=0.3,
-                 p_best=0.6
+                 p_best=0.6,
                  p_change=0.6):
         super().__init__()
 
@@ -380,7 +381,7 @@ class GradualBanditChange4AH:
 
     def render(self, mode='human', close=False):
         pass
-
+    
 class DeceptiveBanditEnv(gym.Env):
     """
     n-armed bandit environment, you have to move steps_away to find the best arm.
