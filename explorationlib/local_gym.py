@@ -332,7 +332,7 @@ class BanditGradualChange42:
 
         # Original...
         self.best = 2
-        self.orginal = BanditUniform4(p_min=self.p_min,
+        self.original = BanditUniform4(p_min=self.p_min,
                                       p_max=self.p_max,
                                       p_best=self.p_best,
                                       best=self.best)
